@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Research</title>
+  <meta name="description" content="Academic homepage for Your Name: research, publications, teaching, and contact." />
+  <meta property="og:title" content="Your Name — Research" />
+  <meta property="og:description" content="Academic homepage for Your Name: research, publications, teaching, and contact." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b132b" />
+  <!-- Optional font: swap if you prefer system fonts only -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* ====== Base & Theme ====== */
+    :root{
+      --bg: #0b132b;
+      --panel: #1c2541;
+      --muted: #3a506b;
+      --accent: #5bc0be;
+      --text: #eaeef6;
+      --text-muted: #c7d2e0;
+      --link: #82e6e3;
+      --ring: rgba(91,192,190,.35);
+      --card: #111827;
+    }
+    :root.light{
+      --bg: #fbfdff;
+      --panel: #ffffff;
+      --muted: #e5eef7;
+      --accent: #2563eb;
+      --text: #0f172a;
+      --text-muted: #334155;
+      --link: #1d4ed8;
+      --ring: rgba(37,99,235,.2);
+      --card: #ffffff;
+    }
+    html{scroll-behavior:smooth}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:var(--link);text-decoration:none}
+    a:focus,button:focus,input:focus,select:focus{outline:none;box-shadow:0 0 0 .2rem var(--ring)}
+    img{max-width:100%;height:auto;border-radius:12px}
+    .container{max-width:1080px;margin:0 auto;padding:28px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:20px}
+    .shadow{box-shadow:0 8px 24px rgba(0,0,0,.18)}
+    .muted{color:var(--text-muted)}
+    .chip{display:inline-block;padding:.18rem .55rem;border-radius:999px;background:var(--muted);color:var(--text);font-size:.82rem;margin:.2rem .25rem 0 0}
+    .btn{display:inline-flex;gap:.5rem;align-items:center;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--text);padding:.55rem .85rem;border-radius:10px;cursor:pointer}
+    .btn:hover{background:rgba(255,255,255,.06)}
+    .btn.primary{background:var(--accent);border-color:transparent;color:white}
+
+    /* ====== Header ====== */
+    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,0));backdrop-filter:saturate(150%) blur(6px)}
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 28px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--accent)}
+    .name{font-weight:800;letter-spacing:.2px}
+    nav ul{display:flex;list-style:none;gap:16px;padding:0;margin:0}
+    nav a{padding:.5rem;border-radius:8px}
+    nav a:hover{background:rgba(255,255,255,.06)}
+    .theme-toggle{margin-left:8px}
+
+    /* ====== Hero ====== */
+    .hero{display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:center;margin-top:10px}
+    @media (max-width:720px){.hero{grid-template-columns:1fr}.hero .photo{justify-self:center}}
+    .hero h1{margin:0;font-size:2rem}
+    .subtitle{margin-top:6px}
+    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+
+    /* ====== Sections ====== */
+    section{scroll-margin-top:88px;margin-top:24px}
+    section h2{margin:0 0 12px 0;font-size:1.35rem}
+
+    /* ====== Publications ====== */
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:.5rem 0 1rem 0}
+    .toolbar input,.toolbar select{background:var(--panel);border:1px solid rgba(255,255,255,.08);color:var(--text);padding:.55rem .7rem;border-radius:10px}
+    .pubs{display:grid;gap:10px}
+    .pub{background:var(--panel);border:1px solid rgba(255,255,255,.08);padding:14px;border-radius:12px}
+    .pub .title{font-weight:600}
+    .pub .authors{font-size:.95rem}
+    .pub .venue{font-size:.9rem}
+    .pub .badges{margin-top:6px}
+
+    /* ====== Footer ====== */
+    footer{margin:28px 0 12px 0;color:var(--text-muted);font-size:.92rem;text-align:center}
+
+    /* ====== Print ====== */
+    @media print{
+      header, .toolbar, .links .btn, .theme-toggle, .skip {display:none!important}
+      body{background:white;color:black}
+      .card,.pub{border:1px solid #999}
+    }
+
+    /* ====== Skip link ====== */
+    .skip{position:absolute;left:-9999px}
+    .skip:focus{left:12px;top:12px;background:#fff;color:#000;padding:.4rem .6rem;border-radius:6px;z-index:999}
+  </style>
+  <script type="application/ld+json" id="schema-person">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Your Name",
+    "jobTitle":"Assistant Professor",
+    "affiliation":{"@type":"Organization","name":"Your University"},
+    "url":"https://your-domain.example/",
+    "email":"mailto:your.email@example.edu",
+    "sameAs":[
+      "https://scholar.google.com/citations?user=YOUR_ID",
+      "https://orcid.org/0000-0000-0000-0000",
+      "https://github.com/yourhandle",
+      "https://www.linkedin.com/in/yourhandle"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="topbar container">
+      <div class="brand">
+        <img class="avatar" src="portrait.jpg" alt="Portrait of Your Name" />
+        <div>
+          <div class="name">Your Name</div>
+          <div class="muted" style="font-size:.92rem">Department • University</div>
+        </div>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="btn theme-toggle" id="themeBtn" aria-label="Toggle theme">🌓</button>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+
+    <!-- Hero / Profile -->
+    <div class="card shadow hero">
+      <div class="photo">
+        <img src="portrait.jpg" alt="Portrait of Your Name" width="160" height="160" />
+      </div>
+      <div>
+        <h1>Your Name</h1>
+        <div class="subtitle muted">Title, Department, University. Research areas: Optimization • Probability • Quantum Information.</div>
+        <div class="links">
+          <a class="btn primary" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
+          <a class="btn" href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" rel="noopener" aria-label="Google Scholar">Google Scholar</a>
+          <a class="btn" href="https://orcid.org/0000-0000-0000-0000" target="_blank" rel="noopener" aria-label="ORCID">ORCID</a>
+          <a class="btn" href="https://github.com/yourhandle" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+          <a class="btn" href="mailto:your.email@example.edu" aria-label="Email">Email</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About</h2>
+      <div class="card">
+        <p>
+          I am a <em>Title</em> in the <strong>Department</strong> at <strong>University</strong>. My research probes the interface of
+          <strong>probability</strong>, <strong>optimization</strong>, and <strong>quantum information</strong>, with an emphasis on
+          high-dimensional phenomena and learning theory.
+        </p>
+        <p class="muted">Prospective students: if you are interested in working with me, please email with your CV and a short paragraph describing your interests.</p>
+      </div>
+    </section>
+
+    <!-- Research Interests -->
+    <section id="research">
+      <h2>Research Interests</h2>
+      <div class="card">
+        <span class="chip">High-Dimensional Probability</span>
+        <span class="chip">Optimization</span>
+        <span class="chip">Quantum Information</span>
+        <span class="chip">Statistical Learning Theory</span>
+        <span class="chip">Random Matrix Theory</span>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <h2>Publications</h2>
+      <div class="card">
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Search title/author/venue…" aria-label="Search publications" />
+          <select id="yearFilter" aria-label="Filter by year">
+            <option value="">All years</option>
+          </select>
+          <select id="typeFilter" aria-label="Filter by type">
+            <option value="">All types</option>
+            <option>Journal</option>
+            <option>Conference</option>
+            <option>Preprint</option>
+          </select>
+          <button class="btn" id="clearFilters" type="button">Clear</button>
+        </div>
+        <ol class="pubs" id="pubList">
+          <!-- Example publication items; duplicate/edit as needed -->
+          <li class="pub" data-year="2025" data-type="Journal">
+            <div class="title">Gaussian Certifiability for Unlearning in High Dimensions</div>
+            <div class="authors">Your Name, Coauthor A, Coauthor B</div>
+            <div class="venue muted">Annals of Applied Probability, 2025 (to appear)</div>
+            <div class="badges">
+              <a href="#" class="chip">PDF</a>
+              <a href="#" class="chip">Code</a>
+              <a href="#" class="chip">BibTeX</a>
+            </div>
+          </li>
+          <li class="pub" data-year="2024" data-type="Conference">
+            <div class="title">Quantum Differential Privacy via Gaussian Trade-off Functions</div>
+            <div class="authors">Your Name, Coauthor C</div>
+            <div class="venue muted">NeurIPS 2024</div>
+            <div class="badges">
+              <a href="#" class="chip">PDF</a>
+              <a href="#" class="chip">Poster</a>
+              <a href="#" class="chip">BibTeX</a>
+            </div>
+          </li>
+          <li class="pub" data-year="2023" data-type="Preprint">
+            <div class="title">Spin Glass Methods for Sparse Recovery</div>
+            <div class="authors">Your Name, Coauthor D</div>
+            <div class="venue muted">arXiv:2301.01234, 2023</div>
+            <div class="badges">
+              <a href="#" class="chip">arXiv</a>
+              <a href="#" class="chip">Slides</a>
+              <a href="#" class="chip">BibTeX</a>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching">
+      <h2>Teaching</h2>
+      <div class="card">
+        <ul>
+          <li>ORF 550: Stochastic Calculus (Spring 2025)</li>
+          <li>ORF 435: Probability & Stochastic Systems (Fall 2024)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Talks / News (optional) -->
+    <section id="news">
+      <h2>News</h2>
+      <div class="card">
+        <ul>
+          <li>[Aug 2025] Invited talk at XYZ Workshop on High-Dimensional Statistics.</li>
+          <li>[Jun 2025] Paper accepted to Annals of Applied Probability.</li>
+          <li>[Jan 2025] Tutorial on Gaussian DP at ABC Institute.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p><strong>Email:</strong> your.email@example.edu</p>
+        <p><strong>Office:</strong> Room 123, Building, Campus Address</p>
+        <p><strong>Mail:</strong> Department, University, City, State ZIP, Country</p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="yearNow"></span> Your Name · Last updated <span id="lastUpdated"></span></div>
+    </footer>
+  </main>
+
+  <script>
+    // ===== Theme toggle (persisted) =====
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme') || 'dark';
+    if(saved === 'light') root.classList.add('light');
+    document.getElementById('themeBtn').addEventListener('click', () => {
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // ===== Footer dates =====
+    document.getElementById('yearNow').textContent = new Date().getFullYear();
+    const d = new Date();
+    document.getElementById('lastUpdated').textContent = d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+
+    // ===== Publications filters/search =====
+    const list = document.getElementById('pubList');
+    const items = Array.from(list.querySelectorAll('.pub'));
+    const yearSel = document.getElementById('yearFilter');
+    const typeSel = document.getElementById('typeFilter');
+    const search = document.getElementById('search');
+
+    // Populate year dropdown from items
+    const years = Array.from(new Set(items.map(li => li.dataset.year))).sort((a,b)=>b-a);
+    years.forEach(y => { const o = document.createElement('option'); o.value=o.textContent=y; yearSel.appendChild(o); });
+
+    function match(li){
+      const q = search.value.toLowerCase();
+      const y = yearSel.value;
+      const t = typeSel.value;
+      const text = li.textContent.toLowerCase();
+      const okQ = !q || text.includes(q);
+      const okY = !y || li.dataset.year === y;
+      const okT = !t || li.dataset.type === t;
+      return okQ && okY && okT;
+    }
+    function apply(){ items.forEach(li => li.style.display = match(li) ? '' : 'none'); }
+    search.addEventListener('input', apply);
+    yearSel.addEventListener('change', apply);
+    typeSel.addEventListener('change', apply);
+    document.getElementById('clearFilters').addEventListener('click', ()=>{search.value='';yearSel.value='';typeSel.value='';apply();});
+
+    // Initial filter
+    apply();
+  </script>
+</body>
+</html>
