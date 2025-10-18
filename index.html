@@ -53,15 +53,54 @@
     .btn.primary{background:var(--accent);border-color:transparent;color:white}
 
     /* ====== Header ====== */
-    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,0));backdrop-filter:saturate(150%) blur(6px)}
-    .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 28px}
-    .brand{display:flex;align-items:center;gap:12px}
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,0));
+      backdrop-filter:saturate(150%) blur(6px);
+      /* Safe area for iOS notches */
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:12px 28px;
+      /* Allow wrapping so nothing gets clipped on narrow screens */
+      flex-wrap:wrap;
+      gap:10px 16px;
+      /* Safe-area side insets on devices with notches / rounded corners */
+      padding-left:max(16px, env(safe-area-inset-left, 0px));
+      padding-right:max(16px, env(safe-area-inset-right, 0px));
+    }
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
     .avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--accent)}
-    .name{font-weight:800;letter-spacing:.2px}
-    nav ul{display:flex;list-style:none;gap:16px;padding:0;margin:0}
+    /* Fluid title that scales down slightly on phones */
+    .name{font-weight:800;letter-spacing:.2px;font-size:clamp(1rem, 2.2vw + .6rem, 1.25rem);line-height:1.2}
+    nav{flex:1 1 auto}
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:16px;
+      padding:0;
+      margin:0;
+      /* Wrap instead of overflowing */
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      row-gap:6px;
+    }
     nav a{padding:.5rem;border-radius:8px}
     nav a:hover{background:rgba(255,255,255,.06)}
     .theme-toggle{margin-left:8px}
+    /* Stack nav under brand on small screens */
+    @media (max-width:720px){
+      nav{order:3;width:100%}
+      nav ul{justify-content:flex-start}
+    }
+    /* Prevent horizontal clipping if something grows wide */
+    html, body { overflow-x: clip; }
+
 
     /* ====== Hero ====== */
     .hero{display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:center;margin-top:10px}
