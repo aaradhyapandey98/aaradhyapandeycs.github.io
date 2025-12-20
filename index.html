@@ -8,10 +8,10 @@
   <meta property="og:title" content="Aaradhya — Research" />
   <meta property="og:description" content="Academic homepage for Aaradhya Pandey: research, publications, teaching, and contact." />
   <meta property="og:type" content="website" />
+
+  <!-- The browser UI color on mobile -->
   <meta name="theme-color" content="#0b2340" />
 
-  <!-- Inter is optional; teorth-like pages often use system fonts.
-       You can delete these two lines if you want true system-ui only. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
@@ -19,15 +19,21 @@
   <style>
     /* =========================================================
        Palette + Layout
-       Goal: one continuous blue gradient band (header + hero)
-             then a clean white content area, with NO white gap.
+       Goal: teorth-like top blue gradient band + white content.
     ========================================================== */
     :root{
-      /* Blue band */
+      /* Blue band endpoints */
       --hero-a: #0b2340;
       --hero-b: #2f5f87;
 
-      /* Page (light default) */
+      /* Single source of truth for the top gradient
+         (used in BOTH header and topband to avoid seams) */
+      --top-gradient:
+        radial-gradient(1200px 420px at 72% -35%, rgba(255,255,255,.18), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,0) 42%),
+        linear-gradient(135deg, var(--hero-a) 0%, #0a2a49 35%, var(--hero-b) 100%);
+
+      /* Body (light default) */
       --page-bg: #ffffff;
       --text: #0f172a;
       --text-muted: #475569;
@@ -39,13 +45,6 @@
       --border: rgba(15, 23, 42, .12);
       --shadow: 0 8px 24px rgba(0,0,0,.10);
 
-      /* Blue-band buttons */
-      --btn-bg: rgba(255,255,255,.10);
-      --btn-bg-hover: rgba(255,255,255,.16);
-      --btn-border: rgba(255,255,255,.18);
-      --btn-border-hover: rgba(255,255,255,.28);
-      --btn-text: rgba(255,255,255,.92);
-
       /* Accents */
       --accent: #5bc0be;
       --ring: rgba(11, 95, 255, .22);
@@ -54,6 +53,7 @@
       --maxw: 1080px;
     }
 
+    /* Optional dark mode */
     :root.dark{
       --page-bg: #0b1220;
       --text: #eaeef6;
@@ -83,7 +83,6 @@
 
     a{ color: var(--link); text-decoration: none; }
     a:hover{ text-decoration: underline; }
-
     a:focus, button:focus, input:focus, select:focus{
       outline: none;
       box-shadow: 0 0 0 .22rem var(--ring);
@@ -92,14 +91,13 @@
 
     img{ max-width: 100%; height: auto; }
 
-    /* Keep padding horizontal-only here.
-       Vertical spacing should be controlled per-section (prevents "mystery gaps"). */
     .container{
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 0 28px;
     }
 
+    /* Prevent accidental horizontal scroll */
     html, body{ overflow-x: clip; }
 
     /* =========================================================
@@ -119,27 +117,19 @@
     .skip:focus{ left: 12px; }
 
     /* =========================================================
-       ONE continuous top band (header + hero) to remove gaps.
-       This is the key change: blue background lives on a wrapper,
-       and both header + hero sit inside it.
+       Sticky nav (top bar) — NO bottom border to avoid the line
     ========================================================== */
-    .topwrap{
-      background:
-        radial-gradient(1200px 420px at 72% -35%, rgba(255,255,255,.18), transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,0) 42%),
-        linear-gradient(135deg, var(--hero-a) 0%, #0a2a49 35%, var(--hero-b) 100%);
-      color: rgba(255,255,255,.92);
-    }
-
-    /* Sticky header (transparent background so it doesn't "break" the wrap) */
     header{
       position: sticky;
       top: 0;
       z-index: 50;
-      background: transparent;
+      background: var(--top-gradient);
       backdrop-filter: saturate(150%) blur(6px);
       padding-top: env(safe-area-inset-top, 0px);
-      border-bottom: 1px solid rgba(255,255,255,.10);
+
+      /* IMPORTANT: remove the line */
+      border-bottom: none;
+      box-shadow: none;
     }
 
     .topbar{
@@ -159,6 +149,7 @@
       align-items: center;
       gap: 12px;
       min-width: 0;
+      color: rgba(255,255,255,.92);
     }
 
     .avatar{
@@ -223,9 +214,18 @@
       border-color: rgba(255,255,255,.28);
     }
 
-    /* Hero band area under sticky header */
+    /* =========================================================
+       Top gradient band (behind the hero card)
+       - same gradient as header (var --top-gradient)
+       - overlap by 1px to prevent a seam on some displays
+    ========================================================== */
     .topband{
-      padding: 22px 0 30px; /* slightly more bottom padding feels closer to the ref */
+      background: var(--top-gradient);
+      padding: 22px 0 26px;
+      color: #fff;
+
+      /* IMPORTANT: hide any 1px seam between sticky header + band */
+      margin-top: -1px;
     }
 
     /* =========================================================
@@ -237,6 +237,7 @@
       border-radius: 16px;
       padding: 20px;
     }
+
     .shadow{ box-shadow: var(--shadow); }
     .muted{ color: var(--text-muted); }
 
@@ -249,30 +250,29 @@
       color: var(--text);
       font-size: .82rem;
       margin: .2rem .25rem 0 0;
-      white-space: nowrap;
     }
 
-    /* Blue-band buttons (hero links) */
+    /* translucent buttons for hero */
     .btn{
       display: inline-flex;
       gap: .5rem;
       align-items: center;
       padding: .55rem .85rem;
       border-radius: 8px;
-      border: 1px solid var(--btn-border);
-      background: var(--btn-bg);
-      color: var(--btn-text);
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.92);
       cursor: pointer;
       user-select: none;
       text-decoration: none;
     }
     .btn:hover{
-      background: var(--btn-bg-hover);
-      border-color: var(--btn-border-hover);
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.28);
       text-decoration: none;
     }
 
-    /* Buttons inside white content */
+    /* light buttons inside white sections */
     .btn.light{
       border: 1px solid var(--border);
       background: var(--panel);
@@ -280,7 +280,6 @@
     }
     .btn.light:hover{
       background: rgba(15,23,42,.06);
-      border-color: rgba(15,23,42,.16);
     }
 
     /* =========================================================
@@ -291,6 +290,7 @@
       grid-template-columns: 160px 1fr;
       gap: 24px;
       align-items: center;
+      margin-top: 10px;
     }
 
     @media (max-width: 720px){
@@ -318,26 +318,12 @@
       margin-top: 12px;
     }
 
-    /* This is the translucent hero card background you had,
-       moved to CSS so it's consistent (and easier to tweak). */
-    .hero-card{
-      background: rgba(0,0,0,.12);
-      border-color: rgba(255,255,255,.14);
-    }
-
-    .hero-photo{
-      border-radius: 14px;
-      display: block;
-    }
-
     /* =========================================================
-       White content area
-       IMPORTANT: no negative margins, no forced top padding that
-       would reveal different backgrounds.
+       Main content sections
     ========================================================== */
     main{
       background: var(--page-bg);
-      padding: 26px 0 10px;
+      padding: 24px 0 10px;
     }
 
     section{
@@ -352,7 +338,7 @@
     }
 
     /* =========================================================
-       Publications / Projects toolbars + items
+       Publications / Projects filtering
     ========================================================== */
     .toolbar{
       display: flex;
@@ -385,12 +371,8 @@
     .pub .badges{ margin-top: 6px; }
 
     /* chips inside pubs */
-    .pub .chip{
-      background: rgba(255,255,255,.06);
-    }
-    :root:not(.dark) .pub .chip{
-      background: #fff;
-    }
+    .pub .chip{ background: rgba(255,255,255,.06); }
+    :root:not(.dark) .pub .chip{ background: #fff; }
 
     /* =========================================================
        Footer
@@ -437,62 +419,58 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <!-- =======================================================
-       Continuous blue background wrapper
-       Header + hero live inside this, so there is NO gap.
-  ======================================================== -->
-  <div class="topwrap">
-    <header>
-      <div class="container">
-        <div class="topbar">
-          <div class="brand">
-            <img class="avatar" src="Aaradhya.png" alt="Portrait of Aaradhya Pandey" />
-            <div>
-              <div class="name">Aaradhya Pandey</div>
-              <div class="email">aaradhyapandey@princeton.edu</div>
-            </div>
+  <!-- Sticky gradient header -->
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <div class="brand">
+          <img class="avatar" src="Aaradhya.png" alt="Portrait of Aaradhya Pandey" />
+          <div>
+            <div class="name">Aaradhya Pandey</div>
+            <div class="email">aaradhyapandey@princeton.edu</div>
           </div>
-
-          <nav aria-label="Primary">
-            <ul>
-              <li><a href="#about">About</a></li>
-              <li><a href="#research">Research</a></li>
-              <li><a href="#publications">Publications</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#service">Service</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </nav>
-
-          <button class="theme-toggle" id="themeBtn" type="button" aria-label="Toggle theme">🌓</button>
         </div>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <button class="theme-toggle" id="themeBtn" type="button" aria-label="Toggle theme">🌓</button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section class="topband" aria-label="Top band">
-      <div class="container">
-        <div class="card shadow hero hero-card">
-          <div class="photo">
-            <img class="hero-photo" src="Aaradhya.png" alt="Portrait of Aaradhya Pandey" width="160" height="160" />
-          </div>
+  <!-- Top gradient band (behind the hero card) -->
+  <section class="topband" aria-label="Top band">
+    <div class="container">
+      <div class="card shadow hero" style="background: rgba(0,0,0,.12); border-color: rgba(255,255,255,.14);">
+        <div class="photo">
+          <img src="Aaradhya.png" alt="Portrait of Aaradhya Pandey" width="160" height="160" style="border-radius:14px" />
+        </div>
 
-          <div class="info">
-            <h1>Aaradhya Pandey</h1>
-            <div class="subtitle">• Probability • Statistics • Machine learning • Information theory.</div>
+        <div class="info">
+          <h1>Aaradhya Pandey</h1>
+          <div class="subtitle">• Probability • Statistics • Machine learning • Information theory.</div>
 
-            <div class="links">
-              <a class="btn" href="CV_Dec1_2025.pdf" target="_blank" rel="noopener">Download CV</a>
-              <a class="btn" href="https://scholar.google.com/citations?user=o9Xpj8IAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-              <a class="btn" href="https://orcid.org/0000-0002-0025-222X" target="_blank" rel="noopener">ORCID</a>
-              <a class="btn" href="https://github.com/aaradhyapandey98" target="_blank" rel="noopener">GitHub</a>
-              <a class="btn" href="https://stackexchange.com/users/33115173/aaradhya-pandey" target="_blank" rel="noopener">StackExchange</a>
-              <a class="btn" href="mailto:aaradhyapandey@princeton.edu">Email</a>
-            </div>
+          <div class="links">
+            <a class="btn" href="CV_Dec1_2025.pdf" target="_blank" rel="noopener">Download CV</a>
+            <a class="btn" href="https://scholar.google.com/citations?user=o9Xpj8IAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a class="btn" href="https://orcid.org/0000-0002-0025-222X" target="_blank" rel="noopener">ORCID</a>
+            <a class="btn" href="https://github.com/aaradhyapandey98" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="https://stackexchange.com/users/33115173/aaradhya-pandey" target="_blank" rel="noopener">StackExchange</a>
+            <a class="btn" href="mailto:aaradhyapandey@princeton.edu">Email</a>
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <!-- White content -->
   <main id="main">
@@ -762,11 +740,9 @@
     // =========================
     const root = document.documentElement;
     const savedTheme = localStorage.getItem('theme') || 'light';
-
     if (savedTheme === 'dark') root.classList.add('dark');
 
-    const themeBtn = document.getElementById('themeBtn');
-    themeBtn.addEventListener('click', () => {
+    document.getElementById('themeBtn').addEventListener('click', () => {
       root.classList.toggle('dark');
       localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
     });
@@ -786,10 +762,7 @@
     // Generic list filter helper
     // =========================
     function setupFilters(opts){
-      const {
-        listId, itemClass,
-        searchId, yearId, typeId, clearId
-      } = opts;
+      const { listId, itemClass, searchId, yearId, typeId, clearId } = opts;
 
       const list = document.getElementById(listId);
       if (!list) return;
@@ -802,6 +775,7 @@
 
       const years = Array.from(new Set(items.map(li => li.dataset.year).filter(Boolean)))
         .sort((a,b) => Number(b) - Number(a));
+
       years.forEach(y => {
         const o = document.createElement('option');
         o.value = y;
@@ -814,12 +788,7 @@
         const y = yearSel.value;
         const t = typeSel.value;
         const text = li.textContent.toLowerCase();
-
-        const okQ = !q || text.includes(q);
-        const okY = !y || li.dataset.year === y;
-        const okT = !t || li.dataset.type === t;
-
-        return okQ && okY && okT;
+        return (!q || text.includes(q)) && (!y || li.dataset.year === y) && (!t || li.dataset.type === t);
       }
 
       function apply(){
