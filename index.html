@@ -4,527 +4,849 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aaradhya — Research</title>
-  <meta name="description" content="Academic homepage for Your Name: research, publications, teaching, and contact." />
-  <meta property="og:title" content="Your Name — Research" />
-  <meta property="og:description" content="Academic homepage for Your Name: research, publications, teaching, and contact." />
+  <meta name="description" content="Academic homepage for Aaradhya Pandey: research, publications, teaching, and contact." />
+  <meta property="og:title" content="Aaradhya — Research" />
+  <meta property="og:description" content="Academic homepage for Aaradhya Pandey: research, publications, teaching, and contact." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0b132b" />
-  <!-- Optional font: swap if you prefer system fonts only -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- The browser UI color on mobile -->
+  <meta name="theme-color" content="#0b2340" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+
   <style>
-    /* ====== Base & Theme ====== */
+    /* =========================================================
+       Palette + Layout
+       Goal: teorth-like top blue gradient band + white content.
+    ========================================================== */
     :root{
-      --bg: #0b132b;
-      --panel: #1c2541;
-      --muted: #3a506b;
+      /* Blue band */
+      --hero-a: #0b2340;
+      --hero-b: #2f5f87;
+
+      /* Body (light default) */
+      --page-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --link: #0b5fff;
+
+      /* Surfaces */
+      --card: #ffffff;
+      --panel: #f6f8fb;
+      --border: rgba(15, 23, 42, .12);
+      --shadow: 0 8px 24px rgba(0,0,0,.10);
+
+      /* Header buttons (translucent) */
+      --btn-bg: rgba(255,255,255,.10);
+      --btn-bg-hover: rgba(255,255,255,.16);
+      --btn-border: rgba(255,255,255,.18);
+      --btn-border-hover: rgba(255,255,255,.28);
+      --btn-text: rgba(255,255,255,.92);
+
+      /* Accents */
       --accent: #5bc0be;
+      --ring: rgba(11, 95, 255, .22);
+
+      /* Layout */
+      --maxw: 1080px;
+    }
+
+    /* Optional dark mode (kept consistent with the same blue band look) */
+    :root.dark{
+      --page-bg: #0b1220;
       --text: #eaeef6;
       --text-muted: #c7d2e0;
-      --link: #82e6e3;
-      --ring: rgba(91,192,190,.35);
-      --card: #111827;
-    }
-    :root.light{
-      --bg: #fbfdff;
-      --panel: #ffffff;
-      --muted: #e5eef7;
-      --accent: #2563eb;
-      --text: #0f172a;
-      --text-muted: #334155;
-      --link: #1d4ed8;
-      --ring: rgba(37,99,235,.2);
-      --card: #ffffff;
-    }
-    html{scroll-behavior:smooth}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";background:var(--bg);color:var(--text);line-height:1.6}
-    a{color:var(--link);text-decoration:none}
-    a:focus,button:focus,input:focus,select:focus{outline:none;box-shadow:0 0 0 .2rem var(--ring)}
-    img{max-width:100%;height:auto;border-radius:12px}
-    .container{max-width:1080px;margin:0 auto;padding:28px}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:20px}
-    .shadow{box-shadow:0 8px 24px rgba(0,0,0,.18)}
-    .muted{color:var(--text-muted)}
-    .chip{display:inline-block;padding:.18rem .55rem;border-radius:999px;background:var(--muted);color:var(--text);font-size:.82rem;margin:.2rem .25rem 0 0}
-    .btn{display:inline-flex;gap:.5rem;align-items:center;border:1px solid rgba(255,255,255,.12);background:transparent;color:var(--text);padding:.55rem .85rem;border-radius:10px;cursor:pointer}
-    .btn:hover{background:rgba(255,255,255,.06)}
-    .btn.primary{background:var(--accent);border-color:transparent;color:white}
+      --link: #7db2ff;
 
-    /* ====== Header ====== */
+      --card: rgba(255,255,255,.06);
+      --panel: rgba(255,255,255,.08);
+      --border: rgba(255,255,255,.12);
+      --shadow: 0 12px 32px rgba(0,0,0,.35);
+
+      --ring: rgba(125,178,255,.28);
+    }
+
+    html{ scroll-behavior: smooth; }
+    *{ box-sizing: border-box; }
+
+    body{
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--page-bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a{ color: var(--link); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+    a:focus, button:focus, input:focus, select:focus{
+      outline: none;
+      box-shadow: 0 0 0 .22rem var(--ring);
+      border-radius: 10px;
+    }
+
+    img{ max-width: 100%; height: auto; }
+
+    .container{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* Prevent accidental horizontal scroll */
+    html, body{ overflow-x: clip; }
+
+    /* =========================================================
+       Skip link
+    ========================================================== */
+    .skip{
+      position: absolute;
+      left: -9999px;
+      top: 12px;
+      padding: .45rem .7rem;
+      border-radius: 8px;
+      background: #fff;
+      color: #000;
+      border: 1px solid rgba(0,0,0,.12);
+      z-index: 9999;
+    }
+    .skip:focus{ left: 12px; }
+
+    /* =========================================================
+       Sticky nav (top bar)
+    ========================================================== */
     header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background:linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,0));
-      backdrop-filter:saturate(150%) blur(6px);
-      /* Safe area for iOS notches */
+      position: sticky;
+      top: 0;
+      z-index: 50;
+
+      /* teorth-like blue gradient */
+      background:
+        radial-gradient(1200px 420px at 72% -35%, rgba(255,255,255,.18), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,0) 42%),
+        linear-gradient(135deg, var(--hero-a) 0%, #0a2a49 35%, var(--hero-b) 100%);
+
+      backdrop-filter: saturate(150%) blur(6px);
       padding-top: env(safe-area-inset-top, 0px);
+      border-bottom: 1px solid rgba(255,255,255,.10);
     }
+
     .topbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:12px 28px;
-      /* Allow wrapping so nothing gets clipped on narrow screens */
-      flex-wrap:wrap;
-      gap:10px 16px;
-      /* Safe-area side insets on devices with notches / rounded corners */
-      padding-left:max(16px, env(safe-area-inset-left, 0px));
-      padding-right:max(16px, env(safe-area-inset-right, 0px));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      padding: 12px 0;
+
+      padding-left: max(0px, env(safe-area-inset-left, 0px));
+      padding-right: max(0px, env(safe-area-inset-right, 0px));
     }
-    .brand{display:flex;align-items:center;gap:12px;min-width:0}
-    .avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--accent)}
-    /* Fluid title that scales down slightly on phones */
-    .name{font-weight:800;letter-spacing:.2px;font-size:clamp(1rem, 2.2vw + .6rem, 1.25rem);line-height:1.2}
-    nav{flex:1 1 auto}
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      color: rgba(255,255,255,.92);
+    }
+
+    .avatar{
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,.35);
+    }
+
+    .name{
+      font-weight: 800;
+      letter-spacing: .2px;
+      font-size: clamp(1rem, 2.2vw + .6rem, 1.25rem);
+      line-height: 1.2;
+    }
+
+    .email{
+      font-size: .92rem;
+      color: rgba(255,255,255,.75);
+    }
+
+    nav{ flex: 1 1 auto; }
+
     nav ul{
-      display:flex;
-      list-style:none;
-      gap:16px;
-      padding:0;
-      margin:0;
-      /* Wrap instead of overflowing */
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      row-gap:6px;
+      display: flex;
+      list-style: none;
+      gap: 10px 14px;
+      padding: 0;
+      margin: 0;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      row-gap: 6px;
     }
-    nav a{padding:.5rem;border-radius:8px}
-    nav a:hover{background:rgba(255,255,255,.06)}
-    .theme-toggle{margin-left:8px}
+
+    nav a{
+      display: inline-block;
+      padding: .45rem .55rem;
+      border-radius: 8px;
+      color: rgba(255,255,255,.90);
+    }
+    nav a:hover{
+      background: rgba(255,255,255,.10);
+      text-decoration: none;
+    }
+
     /* Stack nav under brand on small screens */
-    @media (max-width:720px){
-      nav{order:3;width:100%}
-      nav ul{justify-content:flex-start}
+    @media (max-width: 720px){
+      nav{ order: 3; width: 100%; }
+      nav ul{ justify-content: flex-start; }
     }
-    /* Prevent horizontal clipping if something grows wide */
-    html, body { overflow-x: clip; }
 
+    .theme-toggle{
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.92);
+      padding: .55rem .8rem;
+      cursor: pointer;
+    }
+    .theme-toggle:hover{
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.28);
+    }
 
-    /* ====== Hero ====== */
-    .hero{display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:center;margin-top:10px}
-    @media (max-width:720px){.hero{grid-template-columns:1fr}.hero .photo{justify-self:center}}
-    .hero h1{margin:0;font-size:2rem}
-    .subtitle{margin-top:6px}
-    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    /* =========================================================
+       Top gradient band (the “half image” look)
+       This sits behind your hero/profile block.
+    ========================================================== */
+    .topband{
+      background:
+        radial-gradient(1200px 420px at 72% -35%, rgba(255,255,255,.18), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,0) 42%),
+        linear-gradient(135deg, var(--hero-a) 0%, #0a2a49 35%, var(--hero-b) 100%);
+      padding: 22px 0 26px;
+      color: #fff;
+    }
 
-    /* ====== Sections ====== */
-    section{scroll-margin-top:88px;margin-top:24px}
-    section h2{margin:0 0 12px 0;font-size:1.35rem}
+    /* =========================================================
+       Cards / UI
+    ========================================================== */
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
 
-    /* ====== Publications ====== */
-    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:.5rem 0 1rem 0}
-    .toolbar input,.toolbar select{background:var(--panel);border:1px solid rgba(255,255,255,.08);color:var(--text);padding:.55rem .7rem;border-radius:10px}
-    .pubs{display:grid;gap:10px}
-    .pub{background:var(--panel);border:1px solid rgba(255,255,255,.08);padding:14px;border-radius:12px}
-    .pub .title{font-weight:600}
-    .pub .authors{font-size:.95rem}
-    .pub .venue{font-size:.9rem}
-    .pub .badges{margin-top:6px}
+    .shadow{ box-shadow: var(--shadow); }
 
-    /* ====== Footer ====== */
-    footer{margin:28px 0 12px 0;color:var(--text-muted);font-size:.92rem;text-align:center}
+    .muted{ color: var(--text-muted); }
 
-    /* ====== Print ====== */
+    .chip{
+      display: inline-block;
+      padding: .18rem .55rem;
+      border-radius: 999px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: .82rem;
+      margin: .2rem .25rem 0 0;
+    }
+
+    /* teorth-ish rectangular translucent buttons (for the hero links) */
+    .btn{
+      display: inline-flex;
+      gap: .5rem;
+      align-items: center;
+      padding: .55rem .85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.92);
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.28);
+      text-decoration: none;
+    }
+
+    /* Used for non-topband buttons (inside white content) */
+    .btn.light{
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+    }
+    .btn.light:hover{
+      background: rgba(15,23,42,.06);
+    }
+
+    /* =========================================================
+       Hero
+    ========================================================== */
+    .hero{
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 24px;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 720px){
+      .hero{ grid-template-columns: 1fr; }
+      .hero .photo{ justify-self: center; }
+      .hero .info{ text-align: center; }
+      .hero .links{ justify-content: center; }
+    }
+
+    .hero h1{
+      margin: 0;
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    .subtitle{
+      margin-top: 6px;
+      color: rgba(255,255,255,.80);
+    }
+
+    .links{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    /* =========================================================
+       Main content sections
+    ========================================================== */
+    main{
+      background: var(--page-bg);
+      padding: 24px 0 10px;
+    }
+
+    section{
+      scroll-margin-top: 88px;
+      margin-top: 24px;
+    }
+
+    section h2{
+      margin: 0 0 12px 0;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* =========================================================
+       Publications filters/search
+       NOTE: unique IDs per list to avoid collisions.
+    ========================================================== */
+    .toolbar{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: .5rem 0 1rem 0;
+    }
+
+    .toolbar input,
+    .toolbar select{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: .55rem .7rem;
+      border-radius: 10px;
+    }
+
+    .pubs{ display: grid; gap: 10px; }
+
+    .pub{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 14px;
+      border-radius: 12px;
+    }
+
+    .pub .title{ font-weight: 600; }
+    .pub .authors{ font-size: .95rem; }
+    .pub .venue{ font-size: .9rem; }
+    .pub .badges{ margin-top: 6px; }
+
+    /* chips inside pubs should look like chips */
+    .pub .chip{
+      background: rgba(255,255,255,.06);
+    }
+    :root:not(.dark) .pub .chip{
+      background: #fff;
+    }
+
+    /* =========================================================
+       Footer
+    ========================================================== */
+    footer{
+      margin: 28px 0 18px 0;
+      color: var(--text-muted);
+      font-size: .92rem;
+      text-align: center;
+    }
+
+    /* =========================================================
+       Print
+    ========================================================== */
     @media print{
-      header, .toolbar, .links .btn, .theme-toggle, .skip {display:none!important}
-      body{background:white;color:black}
-      .card,.pub{border:1px solid #999}
+      header, .toolbar, .links .btn, .theme-toggle, .skip{ display: none !important; }
+      body{ background: white; color: black; }
+      .card, .pub{ border: 1px solid #999; box-shadow: none !important; }
     }
-
-    /* ====== Skip link ====== */
-    .skip{position:absolute;left:-9999px}
-    .skip:focus{left:12px;top:12px;background:#fff;color:#000;padding:.4rem .6rem;border-radius:6px;z-index:999}
   </style>
+
   <script type="application/ld+json" id="schema-person">
   {
     "@context":"https://schema.org",
     "@type":"Person",
-    "name":"Your Name",
-    "jobTitle":"Assistant Professor",
-    "affiliation":{"@type":"Organization","name":"Your University"},
-    "url":"https://your-domain.example/",
-    "email":"mailto:your.email@example.edu",
+    "name":"Aaradhya Pandey",
+    "jobTitle":"Ph.D. Candidate",
+    "affiliation":{"@type":"Organization","name":"Princeton University"},
+    "url":"https://aaradhyapandey98.github.io/",
+    "email":"mailto:aaradhyapandey@princeton.edu",
     "sameAs":[
-      "https://scholar.google.com/citations?user=YOUR_ID",
-      "https://orcid.org/0000-0000-0000-0000",
-      "https://github.com/yourhandle",
-      "https://www.linkedin.com/in/yourhandle"
+      "https://scholar.google.com/citations?user=o9Xpj8IAAAAJ&hl=en",
+      "https://orcid.org/0000-0002-0025-222X",
+      "https://github.com/aaradhyapandey98"
     ]
   }
   </script>
+
   <script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 </head>
+
 <body>
   <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Sticky gradient header -->
   <header>
-    <div class="topbar container">
-      <div class="brand">
-        <img class="avatar" src="Aaradhya.png" alt="Portrait of Your Name" />
-        <div>
-          <div class="name">Aaradhya Pandey</div>
-          <div class="muted" style="font-size:.92rem">aaradhyapandey@princeton.edu</div>
+    <div class="container">
+      <div class="topbar">
+        <div class="brand">
+          <img class="avatar" src="Aaradhya.png" alt="Portrait of Aaradhya Pandey" />
+          <div>
+            <div class="name">Aaradhya Pandey</div>
+            <div class="email">aaradhyapandey@princeton.edu</div>
+          </div>
         </div>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <button class="theme-toggle" id="themeBtn" type="button" aria-label="Toggle theme">🌓</button>
       </div>
-      <nav aria-label="Primary">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#research">Research</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#teaching">Service</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <button class="btn theme-toggle" id="themeBtn" aria-label="Toggle theme">🌓</button>
     </div>
   </header>
 
-  <main id="main" class="container">
+  <!-- Top gradient band (behind the hero card) -->
+  <section class="topband" aria-label="Top band">
+    <div class="container">
+      <div class="card shadow hero" style="background: rgba(0,0,0,.12); border-color: rgba(255,255,255,.14);">
+        <div class="photo">
+          <img src="Aaradhya.png" alt="Portrait of Aaradhya Pandey" width="160" height="160" style="border-radius:14px" />
+        </div>
 
-    <!-- Hero / Profile -->
-    <div class="card shadow hero">
-      <div class="photo">
-        <img src="Aaradhya.png" alt="Portrait of Your Name" width="160" height="160" />
-      </div>
-      <div>
-        <h1>Aaradhya Pandey</h1>
-        <div class="subtitle muted">  • Probability • Statistics • Machine learning • Information theory.</div>
-        <div class="links">
-          <a class="btn primary" href="CV_Dec1_2025.pdf" target="_blank" rel="noopener">Download CV</a>
-          <a class="btn" href="https://scholar.google.com/citations?user=o9Xpj8IAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">Google Scholar</a>
-          <a class="btn" href="https://orcid.org/0000-0002-0025-222X" target="_blank" rel="noopener" aria-label="ORCID">ORCID</a>
-          <a class="btn" href="https://github.com/aaradhyapandey98" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
-          <a class="btn" href="https://stackexchange.com/users/33115173/aaradhya-pandey" target="_blank" rel="noopener" aria-label="StackExchange">StackExchange</a>
-          <a class="btn" href="aaradhyapandey@princeton.edu" aria-label="Email">Email</a>
+        <div class="info">
+          <h1>Aaradhya Pandey</h1>
+          <div class="subtitle">• Probability • Statistics • Machine learning • Information theory.</div>
+
+          <div class="links">
+            <a class="btn" href="CV_Dec1_2025.pdf" target="_blank" rel="noopener">Download CV</a>
+            <a class="btn" href="https://scholar.google.com/citations?user=o9Xpj8IAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a class="btn" href="https://orcid.org/0000-0002-0025-222X" target="_blank" rel="noopener">ORCID</a>
+            <a class="btn" href="https://github.com/aaradhyapandey98" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="https://stackexchange.com/users/33115173/aaradhya-pandey" target="_blank" rel="noopener">StackExchange</a>
+            <a class="btn" href="mailto:aaradhyapandey@princeton.edu">Email</a>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- About -->
-    <section id="about">
-      <h2>About</h2>
-      <div class="card">
-        <p>
-          I am a fifth year <em>Graduate student</em> in the Department of <strong>Operations Research and Financial Engineering</strong> at <strong>Princeton</strong> University. I am fortunate to work with
-          <a href= "https://orfe.princeton.edu/people/sanjeev-kulkarni" target= "_blank" rel="noopener noreferrer">
-          Sanjeev Kulkarni
-        </a> and
-          <a href= "https://sites.google.com/site/malekiarian/home" target= "_blank" rel="noopener noreferrer">
-          Arian Maleki.
-        </a> My research interests are at the interface of
-          <strong>probability theory</strong>, <strong> statistics</strong>, and <strong>information theory</strong> with applications in
-          <strong>(quantum) differential privacy</strong>, <strong>machine unlearning</strong> and <strong>spin glasses</strong>.
-        </p>
-        <p class="muted"> I’m applying to postdoctoral positions this Fall (2025) for a Fall 2026 start. If my research interests you, feel free to get in touch. </p>
-      </div>
-    </section>
+  <!-- White content -->
+  <main id="main">
+    <div class="container">
 
-    <!-- Research Interests -->
-    <section id="research">
-      <h2>Research Interests</h2>
-      <div class="card">
-        <span class="chip">High-dimensional statistics</span>
-        <span class="chip">Machine unlearning</span>
-        <span class="chip">Quantum Information</span>
-        <span class="chip">Differential privacy</span>
-        <span class="chip">Spin glasses</span>
-      </div>
-    </section>
-
-    <!-- Publications -->
-    <section id="publications">
-      <h2>Publications</h2>
-      <div class="card">
-        <div class="toolbar">
-          <input id="search" type="search" placeholder="Search title/author/venue…" aria-label="Search publications" />
-          <select id="yearFilter" aria-label="Filter by year">
-            <option value="">All years</option>
-          </select>
-          <select id="typeFilter" aria-label="Filter by type">
-            <option value="">All types</option>
-            <option>Journal</option>
-            <option>Conference</option>
-            <option>Preprint</option>
-            <option>In preparation</option>
-          </select>
-          <button class="btn" id="clearFilters" type="button">Clear</button>
+      <!-- About -->
+      <section id="about">
+        <h2>About</h2>
+        <div class="card">
+          <p>
+            I am a fifth year <em>Graduate student</em> in the Department of <strong>Operations Research and Financial Engineering</strong>
+            at <strong>Princeton</strong> University. I am fortunate to work with
+            <a href="https://orfe.princeton.edu/people/sanjeev-kulkarni" target="_blank" rel="noopener noreferrer">Sanjeev Kulkarni</a>
+            and
+            <a href="https://sites.google.com/site/malekiarian/home" target="_blank" rel="noopener noreferrer">Arian Maleki</a>.
+            My research interests are at the interface of <strong>probability theory</strong>, <strong>statistics</strong>, and
+            <strong>information theory</strong> with applications in <strong>(quantum) differential privacy</strong>,
+            <strong>machine unlearning</strong> and <strong>spin glasses</strong>.
+          </p>
+          <p class="muted">
+            I’m applying to postdoctoral positions this Fall (2025) for a Fall 2026 start. If my research interests you, feel free to get in touch.
+          </p>
         </div>
-        <ol class="pubs" id="pubList">
-          <!-- Example publication items; duplicate/edit as needed -->
-          <li class="pub" data-year="2025" data-type="In preparation" data-arxiv="#">
-            <div class="title">Infinitely divisible privacy and beyond I : Resolution of the \(s^2=2k\) conjecture</div>
-            <div class="authors">Aaradhya Pandey,  Arian Maleki, Sanjeev Kulkarni</div>
-            <div class="venue muted"> </div>
-            <div class="badges">
-              <a href="IDP_2026.pdf" class="chip" target="_blank" rel="noopener noreferrer">Slides</a>
-              <a href="https://arxiv.org/abs/2512.00734" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
-            </div>
-          </li>
-          <li class="pub" data-year="2025" data-type="Preprint" data-arxiv="2510.13094">
-            <div class="title">Gaussian certified unlearning in high dimensions: a hypothesis testing approach</div>
-            <div class="authors">Aaradhya Pandey, Arnab Auddy, Haolin Zou, Arian Maleki, Sanjeev Kulkarni</div>
-            <div class="venue muted">arXiv:2510.13094, 2025 (submitted)</div>
-            <div class="badges">
-              <a href="Gaussian_unlearning.pdf" class="chip" target="_blank" rel="noopener noreferrer">Slides</a>
-              <a href="https://arxiv.org/abs/2510.13094" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
-            </div>
-          </li>
-          <li class="pub" data-year="2024" data-type="Preprint" data-arxiv="2402.12515">
-            <div class="title">Exact recovery in Gaussian weighted stochastic block model: Information theoretic thresholds</div>
-            <div class="authors">Aaradhya Pandey, Sanjeev Kulkarni</div>
-            <div class="venue muted">arXiv:2402.12515, 2024 (submitted)</div>
-            <div class="badges">
-              <a href="GWSBM_exact_recovery.pdf" class="chip" target="_blank" rel="noopener noreferrer">Slides</a>
-              <a href="https://arxiv.org/pdf/2402.12515" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
-            </div>
-          </li>
-          <li class="pub" data-year="2024" data-type="Conference" data-venue="COLT" data-series="PMLR">
-            <div class="title">Community detection in the hypergraph stochastic block model and reconstruction on hypertrees</div>
-            <div class="authors">Yuzhou Gu, Aaradhya Pandey</div>
-            <div class="venue muted">
-              Proceedings of the 37th Conference on Learning Theory (COLT 2024), PMLR 247:2166–2203, 30 Jun–03 Jul 2024.
-            </div>
-            <div class="badges">
-              <a href="https://proceedings.mlr.press/v247/gu24a.html" class="chip" target="_blank" rel="noopener noreferrer">PMLR</a>
-              <a href="https://arxiv.org/abs/2402.06856" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-    
-    <!-- Current Projects -->
-    <section id="projects">
-      <h2>Current Projects</h2>
-      <div class="card">
-        <div class="toolbar">
-          <input id="search" type="search" placeholder="Search title/author/venue…" aria-label="Search publications" />
-          <select id="yearFilter" aria-label="Filter by year">
-            <option value="">All years</option>
-          </select>
-          <select id="typeFilter" aria-label="Filter by type">
-            <option value="">All types</option>
-            <option>In preparation</option>
-          </select>
-          <button class="btn" id="clearFilters" type="button">Clear</button>
+      </section>
+
+      <!-- Research Interests -->
+      <section id="research">
+        <h2>Research Interests</h2>
+        <div class="card">
+          <span class="chip">High-dimensional statistics</span>
+          <span class="chip">Machine unlearning</span>
+          <span class="chip">Quantum Information</span>
+          <span class="chip">Differential privacy</span>
+          <span class="chip">Spin glasses</span>
         </div>
-        <ol class="pubs" id="pubList">
-          <!-- Example publication items; duplicate/edit as needed -->
-          <li class="pub" data-year="2025" data-type="In preparation" data-arxiv="#">
-            <div class="title">Quantum f-differential privacy: a hypothesis testing approach</div>
-            <div class="authors">Aaradhya Pandey,  Arian Maleki, Sanjeev Kulkarni</div>
-            <div class="venue muted"> (In preparation)</div>
-            <div class="badges">
-              <a href="#" class="chip" target="_blank" rel="noopener noreferrer">Slides</a>
-              <a href="#" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
-            </div>
-          </li>
-          <li class="pub" data-year="2025" data-type="In preparation" data-arxiv="#">
-            <div class="title">Quantum infinitely divisible states: a genuinely quantum phenomenon</div>
-            <div class="authors">Aaradhya Pandey,  Arian Maleki, Sanjeev Kulkarni</div>
-            <div class="venue muted"> (In preparation)</div>
-            <div class="badges">
-              <a href="#" class="chip" target="_blank" rel="noopener noreferrer">Slides</a>
-              <a href="#" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
-            </div>
-          </li>
-          <li class="pub" data-year="2025" data-type="In preparation" data-arxiv="#">
-            <div class="title">Multivariate version of the Ghirlanda Guerra identities and the matrix of spin correlations </div>
-            <div class="authors">Aaradhya Pandey,  Arian Maleki, Sanjeev Kulkarni</div>
-            <div class="venue muted"> (In preparation)</div>
-            <div class="badges">
-              <a href="#" class="chip" target="_blank" rel="noopener noreferrer">Slides</a>
-              <a href="#" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
-            </div>
-          </li>
-           <li class="pub" data-year="2025" data-type="In preparation" data-arxiv="#">
-            <div class="title">Optimal transport as limits of high-dimensional statistics: JKO Scheme describing Lasso solution path</div>
-            <div class="authors">Aaradhya Pandey,  Arian Maleki, Sanjeev Kulkarni</div>
-            <div class="venue muted"> (In preparation)</div>
-            <div class="badges">
-              <a href="#" class="chip" target="_blank" rel="noopener noreferrer">Slides</a>
-              <a href="#" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
+      </section>
 
-    <!-- Talks  -->
-<section id="news">
-  <h2>Invited Talks</h2>
-  <div class="card">
-    <ul>
-      <li>[May 2025] Gave a tutorial on Information theory and Differential privacy at
-        <a href="https://www.math.tifrbng.res.in/events/mini-course" target="_blank" rel="noopener noreferrer">
-          TIFR CAM 
-        </a> Bangalore, India.
-      </li>
-      <li>[May 2025] Presented my work on the 
-        <a href= "https://arxiv.org/abs/2510.13094" target= "_blank" rel="noopener noreferrer">
-          Gaussian certified unlearning
-        </a>
-        paper at 
-        <a href="https://cni.iisc.ac.in/seminars/2025-05-22/" target="_blank" rel="noopener noreferrer">
-          IISc 
-        </a> Bangalore, India.
-        <li>[Jan 2025] Presented my work on the Correlation matrix of spin glasses at 
-          <a href="https://math.iisc.ac.in/seminars/2025/2025-01-22-aaradhya-pandey.html" target="_blank" rel="noopener noreferrer">
-          IISc 
-        </a> and  
-          <a href="https://www.math.tifrbng.res.in/events/multivariate-version-of-the-ghirlanda-guerra-identity-and-an-application" target="_blank" rel="noopener noreferrer">
-          TIFR CAM 
-        </a>
-          Bangalore, India.
-      </li>
-      <li>[Oct 2024] Presented my work on 
-        <a href= "https://proceedings.mlr.press/v247/gu24a.html" target= "_blank" rel="noopener noreferrer">
-          Stochastic block model
-        </a>
-        at
-        <a href= "https://math.msu.edu/events/seminars/talk.aspx?eventId=42087" target= "_blank" rel="noopener noreferrer">
-          Michigan State University,
-        </a> USA.
-        <li>[Feb 2024] Our joint work on 
-        <a href= "https://proceedings.mlr.press/v247/gu24a.html" target= "_blank" rel="noopener noreferrer">
-          Stochastic block model
-        </a>
-        was presented by 
-        <a href= "https://sevenkplus.com/" target= "_blank" rel="noopener noreferrer">
-          Yuzhou Gu,
-        </a> at the
-        <a href= "https://www.ias.edu/video/reconstruction-trees-and-hypertrees" target= "_blank" rel="noopener noreferrer">
-          Institute of Advanced Study,
-        </a> USA.
-    </ul>
-  </div>
-</section>
+      <!-- Publications -->
+      <section id="publications">
+        <h2>Publications</h2>
+        <div class="card">
+          <div class="toolbar">
+            <input id="pubSearch" type="search" placeholder="Search title/author/venue…" aria-label="Search publications" />
+            <select id="pubYearFilter" aria-label="Filter publications by year">
+              <option value="">All years</option>
+            </select>
+            <select id="pubTypeFilter" aria-label="Filter publications by type">
+              <option value="">All types</option>
+              <option>Journal</option>
+              <option>Conference</option>
+              <option>Preprint</option>
+              <option>In preparation</option>
+            </select>
+            <button class="btn light" id="pubClearFilters" type="button">Clear</button>
+          </div>
 
-   <!-- Teaching -->
-    <section id="teaching">
-      <h2>Teaching </h2>
-      <div class="card">
-        <ul>
-          <li>ORF 445: High Frequency Markets (Spring 2023)</li>
-          <li>ORF 387: Networks (Fall 2022)</li>
-          <li>MAT 378: Theory of Games (Spring 2023)</li>
-          <li>ORF 309: Probability and Stochastic Systems (Fall 2025)</li>
-          <li>ORF 245: Fundamentals of Statistics (Fall 2024, 2023)</li>
-          <li>ORF 245: Undergraduate statistics (Fall 2024)</li>
-          <li>ECE 201: Information and Signals (Spring 2025, 2024)</li>
-        </ul>
-      </div>
-    </section>
-    <!-- Academic Service -->
-    <section id="teaching">
-      <h2>Academic service</h2>
-      <div class="card">
-        <ul>
-          <li>Reviewed for journals 
-            <a href= "https://academic.oup.com/imaiai" target= "_blank" rel="noopener noreferrer">
-          Information and Inference (IMAIAI), 
-            </a>
-            <a href= "https://link.springer.com/journal/10208" target= "_blank" rel="noopener noreferrer">
-          Foundations of Computational Mathematics (FOCM).
-            </a> 
-          </li>
-          <li>Reviewed for journal 
-            <a href= "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=18" target= "_blank" rel="noopener noreferrer">
-          IEEE Transactions on Information Theory. 
-            </a>
-          </li>
-          <li>Organized a student reading group in
-            <a href= "https://sites.google.com/princeton.edu/lifeinhighdimension?usp=sharing" target= "_blank" rel="noopener noreferrer">
-          High-dimensional Probability and Statistics, 
-            </a> at Princeton.
-          </li>
-        </ul>
-      </div>
-    </section>
-    <!-- Selected Topics Classes -->
-    <section id="teaching">
-      <h2>Selected Topics Classes at Princeton</h2>
-      <div class="card">
-        <ul>
-          <li>ORF 550: Topics in Probability: Probability in High Dimensions  (Fall 2021, Grade A)</li>
-          <li>ORF 570: Topics in Statistics and Operations Research: Statistical Machine Learning   (Fall 2023, Grade A)</li>
-          <li>ECO 519: Advanced Econometrics: Nonlinear Models (Fall 2023, Grade A)</li>
-          <li>PHY 535: Phase Transitions and Renormalization Group  (Fall 2023, Audited)</li>
-          <li>MAT 522: Introduction to Partial Differential Equations (Fall 2022, Audited)</li>
-          <li>MAT 572: Topics in Combinatorial Optimization (Fall 2022, Audited)</li>
-          <li>MAT 577: Topics in Combinatorics: The Probabilistic Method  (Spring 2022, Grade A)</li>
-          <li>MAT 577: Topics in Combinatorics: Extremal Combinatorics  (Spring 2023, Audited)</li>
-          <li>MAT 586: Computational methods in Cryo-Electron Microscopy  (Spring 2024, Audited)</li>
-          <li>MAT 589: Topics in Probability, Statistics and Dynamics: Modern Discrete Probability  (Fall 2021, Audited)</li>
-          <li>MAT 595: Topics in Mathematical Physics: Mathematical Aspects of Condensed  Matter Physics (Spring 2024, Audited)</li>
-          <li>MAT 597: Introduction to Mathematical Physics  (Spring 2023, Audited)</li>
-        </ul>
-      </div>
-    </section>
-    
-    <!-- Contact -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="card">
-        <p><strong>Email:</strong> aaradhyapandey@princeton.edu, aaradhyapandeycs@gmail.com</p>
-        <p><strong>Office:</strong> Room 216, Sherrerd Hall, 98 Charlton Street</p>
-        <p><strong>Mail:</strong> ORFE Department, Princeton University, New Jersey, 08540, USA</p>
-      </div>
-    </section>
+          <ol class="pubs" id="pubList">
+            <li class="pub" data-year="2025" data-type="In preparation">
+              <div class="title">Infinitely divisible privacy and beyond I : Resolution of the \(s^2=2k\) conjecture</div>
+              <div class="authors">Aaradhya Pandey, Arian Maleki, Sanjeev Kulkarni</div>
+              <div class="venue muted"></div>
+              <div class="badges">
+                <a href="IDP_2026.pdf" class="chip" target="_blank" rel="noopener noreferrer">Slides</a>
+                <a href="https://arxiv.org/abs/2512.00734" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </li>
 
-    <footer>
-      <div>© <span id="yearNow"></span> Aaradhya Pandey · Last updated <span id="lastUpdated"></span></div>
-    </footer>
+            <li class="pub" data-year="2025" data-type="Preprint">
+              <div class="title">Gaussian certified unlearning in high dimensions: a hypothesis testing approach</div>
+              <div class="authors">Aaradhya Pandey, Arnab Auddy, Haolin Zou, Arian Maleki, Sanjeev Kulkarni</div>
+              <div class="venue muted">arXiv:2510.13094, 2025 (submitted)</div>
+              <div class="badges">
+                <a href="Gaussian_unlearning.pdf" class="chip" target="_blank" rel="noopener noreferrer">Slides</a>
+                <a href="https://arxiv.org/abs/2510.13094" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </li>
+
+            <li class="pub" data-year="2024" data-type="Preprint">
+              <div class="title">Exact recovery in Gaussian weighted stochastic block model: Information theoretic thresholds</div>
+              <div class="authors">Aaradhya Pandey, Sanjeev Kulkarni</div>
+              <div class="venue muted">arXiv:2402.12515, 2024 (submitted)</div>
+              <div class="badges">
+                <a href="GWSBM_exact_recovery.pdf" class="chip" target="_blank" rel="noopener noreferrer">Slides</a>
+                <a href="https://arxiv.org/pdf/2402.12515" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </li>
+
+            <li class="pub" data-year="2024" data-type="Conference">
+              <div class="title">Community detection in the hypergraph stochastic block model and reconstruction on hypertrees</div>
+              <div class="authors">Yuzhou Gu, Aaradhya Pandey</div>
+              <div class="venue muted">
+                Proceedings of the 37th Conference on Learning Theory (COLT 2024), PMLR 247:2166–2203, 30 Jun–03 Jul 2024.
+              </div>
+              <div class="badges">
+                <a href="https://proceedings.mlr.press/v247/gu24a.html" class="chip" target="_blank" rel="noopener noreferrer">PMLR</a>
+                <a href="https://arxiv.org/abs/2402.06856" class="chip" target="_blank" rel="noopener noreferrer">arXiv</a>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Current Projects -->
+      <section id="projects">
+        <h2>Current Projects</h2>
+        <div class="card">
+          <div class="toolbar">
+            <input id="projSearch" type="search" placeholder="Search title/author/…" aria-label="Search projects" />
+            <select id="projYearFilter" aria-label="Filter projects by year">
+              <option value="">All years</option>
+            </select>
+            <select id="projTypeFilter" aria-label="Filter projects by type">
+              <option value="">All types</option>
+              <option>In preparation</option>
+            </select>
+            <button class="btn light" id="projClearFilters" type="button">Clear</button>
+          </div>
+
+          <ol class="pubs" id="projList">
+            <li class="pub" data-year="2025" data-type="In preparation">
+              <div class="title">Quantum f-differential privacy: a hypothesis testing approach</div>
+              <div class="authors">Aaradhya Pandey, Arian Maleki, Sanjeev Kulkarni</div>
+              <div class="venue muted">(In preparation)</div>
+              <div class="badges">
+                <a href="#" class="chip">Slides</a>
+                <a href="#" class="chip">arXiv</a>
+              </div>
+            </li>
+
+            <li class="pub" data-year="2025" data-type="In preparation">
+              <div class="title">Quantum infinitely divisible states: a genuinely quantum phenomenon</div>
+              <div class="authors">Aaradhya Pandey, Arian Maleki, Sanjeev Kulkarni</div>
+              <div class="venue muted">(In preparation)</div>
+              <div class="badges">
+                <a href="#" class="chip">Slides</a>
+                <a href="#" class="chip">arXiv</a>
+              </div>
+            </li>
+
+            <li class="pub" data-year="2025" data-type="In preparation">
+              <div class="title">Multivariate version of the Ghirlanda–Guerra identities and the matrix of spin correlations</div>
+              <div class="authors">Aaradhya Pandey, Arian Maleki, Sanjeev Kulkarni</div>
+              <div class="venue muted">(In preparation)</div>
+              <div class="badges">
+                <a href="#" class="chip">Slides</a>
+                <a href="#" class="chip">arXiv</a>
+              </div>
+            </li>
+
+            <li class="pub" data-year="2025" data-type="In preparation">
+              <div class="title">Optimal transport as limits of high-dimensional statistics: a JKO scheme for the Lasso solution path</div>
+              <div class="authors">Aaradhya Pandey, Arian Maleki, Sanjeev Kulkarni</div>
+              <div class="venue muted">(In preparation)</div>
+              <div class="badges">
+                <a href="#" class="chip">Slides</a>
+                <a href="#" class="chip">arXiv</a>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Invited Talks -->
+      <section id="news">
+        <h2>Invited Talks</h2>
+        <div class="card">
+          <ul>
+            <li>[May 2025] Gave a tutorial on Information theory and Differential privacy at
+              <a href="https://www.math.tifrbng.res.in/events/mini-course" target="_blank" rel="noopener noreferrer">TIFR CAM</a>, Bangalore, India.
+            </li>
+            <li>[May 2025] Presented my work on
+              <a href="https://arxiv.org/abs/2510.13094" target="_blank" rel="noopener noreferrer">Gaussian certified unlearning</a>
+              at <a href="https://cni.iisc.ac.in/seminars/2025-05-22/" target="_blank" rel="noopener noreferrer">IISc</a>, Bangalore, India.
+            </li>
+            <li>[Jan 2025] Presented my work on the correlation matrix of spin glasses at
+              <a href="https://math.iisc.ac.in/seminars/2025/2025-01-22-aaradhya-pandey.html" target="_blank" rel="noopener noreferrer">IISc</a>
+              and <a href="https://www.math.tifrbng.res.in/events/multivariate-version-of-the-ghirlanda-guerra-identity-and-an-application" target="_blank" rel="noopener noreferrer">TIFR CAM</a>, Bangalore, India.
+            </li>
+            <li>[Oct 2024] Presented my work on
+              <a href="https://proceedings.mlr.press/v247/gu24a.html" target="_blank" rel="noopener noreferrer">hypergraph SBM</a>
+              at <a href="https://math.msu.edu/events/seminars/talk.aspx?eventId=42087" target="_blank" rel="noopener noreferrer">Michigan State University</a>, USA.
+            </li>
+            <li>[Feb 2024] Our joint work on
+              <a href="https://proceedings.mlr.press/v247/gu24a.html" target="_blank" rel="noopener noreferrer">hypergraph SBM</a>
+              was presented by <a href="https://sevenkplus.com/" target="_blank" rel="noopener noreferrer">Yuzhou Gu</a>
+              at the <a href="https://www.ias.edu/video/reconstruction-trees-and-hypertrees" target="_blank" rel="noopener noreferrer">Institute of Advanced Study</a>, USA.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Teaching -->
+      <section id="teaching">
+        <h2>Teaching</h2>
+        <div class="card">
+          <ul>
+            <li>ORF 445: High Frequency Markets (Spring 2023)</li>
+            <li>ORF 387: Networks (Fall 2022)</li>
+            <li>MAT 378: Theory of Games (Spring 2023)</li>
+            <li>ORF 309: Probability and Stochastic Systems (Fall 2025)</li>
+            <li>ORF 245: Fundamentals of Statistics (Fall 2024, 2023)</li>
+            <li>ECE 201: Information and Signals (Spring 2025, 2024)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Service -->
+      <section id="service">
+        <h2>Academic Service</h2>
+        <div class="card">
+          <ul>
+            <li>Reviewed for
+              <a href="https://academic.oup.com/imaiai" target="_blank" rel="noopener noreferrer">Information and Inference (IMAIAI)</a>
+              and <a href="https://link.springer.com/journal/10208" target="_blank" rel="noopener noreferrer">Foundations of Computational Mathematics (FOCM)</a>.
+            </li>
+            <li>Reviewed for
+              <a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=18" target="_blank" rel="noopener noreferrer">IEEE Transactions on Information Theory</a>.
+            </li>
+            <li>Organized a student reading group in
+              <a href="https://sites.google.com/princeton.edu/lifeinhighdimension?usp=sharing" target="_blank" rel="noopener noreferrer">High-dimensional Probability and Statistics</a>
+              at Princeton.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Selected Topics -->
+      <section id="topics">
+        <h2>Selected Topics Classes at Princeton</h2>
+        <div class="card">
+          <ul>
+            <li>ORF 550: Topics in Probability: Probability in High Dimensions (Fall 2021, Grade A)</li>
+            <li>ORF 570: Topics in Statistics and Operations Research: Statistical Machine Learning (Fall 2023, Grade A)</li>
+            <li>ECO 519: Advanced Econometrics: Nonlinear Models (Fall 2023, Grade A)</li>
+            <li>PHY 535: Phase Transitions and Renormalization Group (Fall 2023, Audited)</li>
+            <li>MAT 522: Introduction to Partial Differential Equations (Fall 2022, Audited)</li>
+            <li>MAT 572: Topics in Combinatorial Optimization (Fall 2022, Audited)</li>
+            <li>MAT 577: Topics in Combinatorics: The Probabilistic Method (Spring 2022, Grade A)</li>
+            <li>MAT 586: Computational methods in Cryo-Electron Microscopy (Spring 2024, Audited)</li>
+            <li>MAT 589: Topics in Probability, Statistics and Dynamics: Modern Discrete Probability (Fall 2021, Audited)</li>
+            <li>MAT 595: Topics in Mathematical Physics (Spring 2024, Audited)</li>
+            <li>MAT 597: Introduction to Mathematical Physics (Spring 2023, Audited)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="card">
+          <p><strong>Email:</strong> aaradhyapandey@princeton.edu, aaradhyapandeycs@gmail.com</p>
+          <p><strong>Office:</strong> Room 216, Sherrerd Hall, 98 Charlton Street</p>
+          <p><strong>Mail:</strong> ORFE Department, Princeton University, New Jersey, 08540, USA</p>
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span id="yearNow"></span> Aaradhya Pandey · Last updated <span id="lastUpdated"></span></div>
+      </footer>
+
+    </div>
   </main>
 
   <script>
-    // ===== Theme toggle (persisted) =====
+    // =========================
+    // Theme toggle (persisted)
+    // =========================
     const root = document.documentElement;
-    const saved = localStorage.getItem('theme') || 'dark';
-    if(saved === 'light') root.classList.add('light');
-    document.getElementById('themeBtn').addEventListener('click', () => {
-      root.classList.toggle('light');
-      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+
+    // Use "dark" class for dark mode (keeps CSS simple)
+    if (savedTheme === 'dark') root.classList.add('dark');
+
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
     });
 
-    // ===== Footer dates =====
-    document.getElementById('yearNow').textContent = new Date().getFullYear();
-    const d = new Date();
-    document.getElementById('lastUpdated').textContent = d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+    // =========================
+    // Footer dates
+    // =========================
+    const now = new Date();
+    document.getElementById('yearNow').textContent = String(now.getFullYear());
+    document.getElementById('lastUpdated').textContent = now.toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
 
-    // ===== Publications filters/search =====
-    const list = document.getElementById('pubList');
-    const items = Array.from(list.querySelectorAll('.pub'));
-    const yearSel = document.getElementById('yearFilter');
-    const typeSel = document.getElementById('typeFilter');
-    const search = document.getElementById('search');
+    // =========================
+    // Generic list filter helper
+    // =========================
+    function setupFilters(opts){
+      const {
+        listId, itemClass,
+        searchId, yearId, typeId, clearId
+      } = opts;
 
-    // Populate year dropdown from items
-    const years = Array.from(new Set(items.map(li => li.dataset.year))).sort((a,b)=>b-a);
-    years.forEach(y => { const o = document.createElement('option'); o.value=o.textContent=y; yearSel.appendChild(o); });
+      const list = document.getElementById(listId);
+      if (!list) return;
 
-    function match(li){
-      const q = search.value.toLowerCase();
-      const y = yearSel.value;
-      const t = typeSel.value;
-      const text = li.textContent.toLowerCase();
-      const okQ = !q || text.includes(q);
-      const okY = !y || li.dataset.year === y;
-      const okT = !t || li.dataset.type === t;
-      return okQ && okY && okT;
+      const items = Array.from(list.querySelectorAll('.' + itemClass));
+      const search = document.getElementById(searchId);
+      const yearSel = document.getElementById(yearId);
+      const typeSel = document.getElementById(typeId);
+      const clearBtn = document.getElementById(clearId);
+
+      // Populate year dropdown from items
+      const years = Array.from(new Set(items.map(li => li.dataset.year).filter(Boolean)))
+        .sort((a,b) => Number(b) - Number(a));
+      years.forEach(y => {
+        const o = document.createElement('option');
+        o.value = y;
+        o.textContent = y;
+        yearSel.appendChild(o);
+      });
+
+      function matches(li){
+        const q = (search.value || '').toLowerCase();
+        const y = yearSel.value;
+        const t = typeSel.value;
+        const text = li.textContent.toLowerCase();
+
+        const okQ = !q || text.includes(q);
+        const okY = !y || li.dataset.year === y;
+        const okT = !t || li.dataset.type === t;
+
+        return okQ && okY && okT;
+      }
+
+      function apply(){
+        items.forEach(li => { li.style.display = matches(li) ? '' : 'none'; });
+      }
+
+      search.addEventListener('input', apply);
+      yearSel.addEventListener('change', apply);
+      typeSel.addEventListener('change', apply);
+      clearBtn.addEventListener('click', () => {
+        search.value = '';
+        yearSel.value = '';
+        typeSel.value = '';
+        apply();
+      });
+
+      apply();
     }
-    function apply(){ items.forEach(li => li.style.display = match(li) ? '' : 'none'); }
-    search.addEventListener('input', apply);
-    yearSel.addEventListener('change', apply);
-    typeSel.addEventListener('change', apply);
-    document.getElementById('clearFilters').addEventListener('click', ()=>{search.value='';yearSel.value='';typeSel.value='';apply();});
 
-    // Initial filter
-    apply();
+    // Publications filters
+    setupFilters({
+      listId: 'pubList',
+      itemClass: 'pub',
+      searchId: 'pubSearch',
+      yearId: 'pubYearFilter',
+      typeId: 'pubTypeFilter',
+      clearId: 'pubClearFilters'
+    });
+
+    // Projects filters
+    setupFilters({
+      listId: 'projList',
+      itemClass: 'pub',
+      searchId: 'projSearch',
+      yearId: 'projYearFilter',
+      typeId: 'projTypeFilter',
+      clearId: 'projClearFilters'
+    });
   </script>
 </body>
 </html>
